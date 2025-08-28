@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or "Accessible Site" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+<body>
+  <!-- Skip link at top-right -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header role="banner" class="site-header" aria-label="Site header">
+    <nav aria-label="Primary" class="primary-nav">
+      <ul role="list" class="nav-list">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      </ul>
+
+      <form action="{{ url_for('search') }}" method="get" role="search" aria-label="Site search" class="search-form">
+        <label for="q">Search</label>
+        <input id="q" name="q" type="search" required aria-required="true" />
+        <button type="submit">Search</button>
+      </form>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    {% block content %}{% endblock %}
+    {% if dynamic_content %}
+      <article aria-label="{{ title or 'Page' }}">
+        {{ dynamic_content | safe }}
+      </article>
+    {% endif %}
+  </main>
+
+  <footer role="contentinfo" class="site-footer">
+    <ul role="list" class="contentinfo-links">
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}">About</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+    </ul>
+    <p>&copy; <span id="year"></span> Accessible Project</p>
+  </footer>
+</body>
+</html>

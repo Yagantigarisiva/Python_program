@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section aria-labelledby="search-heading">
+  <h1 id="search-heading">Search</h1>
+  {% if q %}
+    <p>Results for: <strong>{{ q }}</strong></p>
+    {% if rows %}
+      <ol class="search-results">
+        {% for r in rows %}
+          <li>
+            <h2>
+              {% if r.get("slug") %}
+                <a href="{{ url_for('page', slug=r['slug']) }}">{{ r['title'] }}</a>
+              {% else %}
+                {{ r['title'] }}
+              {% endif %}
+            </h2>
+            <p>{{ r['snippet']|safe }}</p>
+          </li>
+        {% endfor %}
+      </ol>
+    {% else %}
+      <p>No results.</p>
+    {% endif %}
+  {% else %}
+    <p>Enter a query in the search box.</p>
+  {% endif %}
+</section>
+{% endblock %}
