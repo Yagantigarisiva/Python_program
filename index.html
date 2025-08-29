@@ -1,8 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
-<section aria-labelledby="home-heading">
-  <h1 id="home-heading">Welcome</h1>
-  <p>This is the home page shell. <strong>Paste your existing HTML</strong> into this section, replacing this paragraph, to preserve content exactly.</p>
-  <p>Everything inside &lt;main id="main"&gt; is your page content area.</p>
-</section>
+<main id="main-content" role="main">
+  <section aria-labelledby="home-heading">
+    <h1 id="home-heading">Welcome to the Accessible Web Project</h1>
+    <p>
+      This project demonstrates how to build a web application with accessibility in mind. 
+      It is developed using Python (Flask) on the backend and semantic HTML templates for 
+      the frontend, following WCAG guidelines.
+    </p>
+
+    <section aria-labelledby="principles-heading">
+      <h2 id="principles-heading">Accessibility Principles</h2>
+      <ul>
+        <li><strong>Perceivable:</strong> Content should be presented in ways that users can perceive, including screen readers.</li>
+        <li><strong>Operable:</strong> All functionality should be usable by keyboard and other input methods.</li>
+        <li><strong>Understandable:</strong> Information and operation must be clear and easy to follow.</li>
+        <li><strong>Robust:</strong> Content must work across different browsers, devices, and assistive technologies.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="features-heading">
+      <h2 id="features-heading">Project Features</h2>
+      <p>This site includes:</p>
+      <ul>
+        <li>Skip links to quickly navigate to main content.</li>
+        <li>Semantic HTML for better screen reader support.</li>
+        <li>Keyboard-accessible navigation menus.</li>
+        <li>Search functionality with highlighted results.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="get-started-heading">
+      <h2 id="get-started-heading">Get Started</h2>
+      <p>
+        Use the navigation links at the top of the page to explore sections like 
+        <a href="{{ url_for('about') }}">About</a> and 
+        <a href="{{ url_for('contact') }}">Contact</a>.
+      </p>
+    </section>
+  </section>
+</main>
 {% endblock %}
+            
